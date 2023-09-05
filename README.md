@@ -28,8 +28,22 @@ There are 18 CSV files available from FitBit Fitness Tracker Data (CC0: Public D
 We will use SQL as our main tool for the Process and Analyze phases. As for the Visualization phase we will be using Tableau to create customized graphs.
 
 ## 3- Process
+Main steps of the process phase:
+1-	Open and look into each dataset file;
+2-	Choose the useful datasets for the analysis;
+3-	The dataset files can be found on the following link: https://www.kaggle.com/datasets/arashnic/fitbit  
+4-	Upload the chosen files into BigQuery (SQL);
+5-	Some files gave an error for datetime format when trying to upload them into BigQuery, than I did some datetime formatting in google sheets before uploading into BigQuery;
+6-	Files with metrics in minutes and seconds weren’t selected for the analysis. As we are looking for trends, only files containing metrics with day and hours will be used for this project;
+7-	Except for the weight (67 rows) and sleep (413 rows) datasets there are 940 rows of data in each selected dataset;
+8-	After a quick look into each dataset, we can observe that all of them have 1 column in common, the “Id” column. And the “activity_merged” file seems to contain the same data as the files “calories_merged”, “intensities_merged” and “steps_merged”.
+9-	So, I will check with some queries if the data in those datasets match. If they don’t, I will use JOIN statements to join the smaller datasets into the large one (activity_merged). If they have the same data, I will just use the large one and remove the others.
+10-	
+
 Data limitations observed:
 
 -	The total of users that provided data is 33, it’s a small sample size, because of that, the final results and findings may not be very reliable or useful;
 -	The data is from 2016 and this project is happening in 2023. So, it might be outdated and may not reflect the real scenario nowadays;
 -	It would be useful to have gender information for this project for the company’s (Bellabeat) main audience and consumers are women in general, but we don’t have that.
+
+
