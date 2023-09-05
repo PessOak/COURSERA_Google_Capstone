@@ -18,14 +18,9 @@ Source: Gran View Research Inc. (https://www.grandviewresearch.com/). Sample Rep
 ## 1- Ask
 Business tasks: 
 
-a) Identify the business task
+a) Identify the business task -> The task is to transform raw smart device usage data into actionable insights that can guide Bellabeat's marketing strategy, enhancing their product positioning and communication efforts in a way that aligns with current consumer preferences and behaviors in the smart device market.
 
-b) Consider key stakeholders
-
-a)	The task is to transform raw smart device usage data into actionable insights that can guide Bellabeat's marketing strategy, enhancing their product positioning and communication efforts in a way that aligns with current consumer preferences and behaviors in the smart device market.
-
-b)	Urška Sršen (chief creative officer) and Sando Mur are the primary stakeholders. And Bellabeat’s marketing analytics team are the secondary stakeholders.
-
+b) Consider key stakeholders -> Urška Sršen (chief creative officer) and Sando Mur are the primary stakeholders. And Bellabeat’s marketing analytics team are the secondary stakeholders.
 
 
 
