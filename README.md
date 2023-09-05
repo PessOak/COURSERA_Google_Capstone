@@ -12,6 +12,7 @@ Furthermore, wearables are forging stronger connections with the broader ecosyst
 The graph below shows the growth of the wearable devices market in recent years and projections for the future
 
 ![image](https://github.com/PessOak/COURSERA_Google_Capstone/assets/105830948/4c754216-582a-4178-8ed0-452a882a2db6)
+
 Source: Gran View Research Inc. (https://www.grandviewresearch.com/). Sample Report: "Wearable Technology Market Analysis, 2022 - Pg.43"
 
 
