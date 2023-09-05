@@ -22,6 +22,8 @@ a) Identify the business task -> The task is to transform raw smart device usage
 
 b) Consider key stakeholders -> Urška Sršen (chief creative officer) and Sando Mur are the primary stakeholders. And Bellabeat’s marketing analytics team are the secondary stakeholders.
 
+## 2- Prepare
+
 
 
 
