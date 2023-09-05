@@ -27,3 +27,9 @@ There are 18 CSV files available from FitBit Fitness Tracker Data (CC0: Public D
 
 We will use SQL as our main tool for the Process and Analyze phases. As for the Visualization phase we will be using Tableau to create customized graphs.
 
+## 3- Process
+Data limitations observed:
+
+•	The total of users that provided data is 33, it’s a small sample size, because of that, the final results and findings may not be very reliable or useful;
+•	The data is from 2016 and this project is happening in 2023. So, it might be outdated and may not reflect the real scenario nowadays;
+•	It would be useful to have gender information for this project for the company’s (Bellabeat) main audience and consumers are women in general, but we don’t have that.
