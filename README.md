@@ -35,6 +35,7 @@ Main steps of the Prepare phase:
 -	Files with metrics in minutes and seconds weren’t selected for the analysis. As we are looking for trends, only files containing metrics with day and hours will be used for this project;
 -	The files were renamed, the "dailyActivity_merged.csv" is now "activity_merged.csv"; the "dailyCalories_merged.csv" is now "calories_merged.csv"; the "dailyIntensities_merged.csv" is now "intensities_merged.csv"; the "sleepDay_merged.csv" is now "sleep_day_merged.csv"; the "weightLogInfo_merged.csv" is now "weight_info.csv"; the "dailySteps_merged.csv" is now "steps_merged.csv"
 -	Except for the weight_info (67 rows) and sleep_day_merged (413 rows) datasets there are 940 rows of data in each selected dataset;
+
 ```sql
 -- This basic query can be used to give us a general idea of the file. It has 940 rows of data, all columns contain numeric data and except for the "weight_info" and "sleep_day_merged" datasets there are 940 rows of data in each dataset.
 SELECT
@@ -120,14 +121,16 @@ WHERE
 - After comparing the datasets I've seen that the steps, intensities and calories datasets are already merged into the activity_merged one. So I will just worj with the activity_merged and remove the other three datasets.
 - Next I will use a query  to check how many unique entries there are for activity, we will also know how many users provided their data for the research:
 ```sql
--- With this query we can discover the total of individuals that provided their data for the research
+-- With this query we can discover the total of individuals that provided their data for the research.
 SELECT
 DISTINCT
   Id
 FROM
   `elegant-atom-395419.bellabeat.activity_merged`
 ```
+
 - Now checking how many entries there are for sleep:
+
 ```sql
 -- With this query we can check the number of users info for sleep, there are 24 rows, the sample size is rather small but we will keep it for now, it might be useful
 SELECT
@@ -135,7 +138,9 @@ SELECT
 FROM 
   `elegant-atom-395419.bellabeat.sleep_day_merged`
 ```
+
 - And now checking how many entries there are for weigth:
+
 ```sql
 -- With this query we can check how many values there are for weigth, as we can see there are only 8 rows, due to the small sample size we won't be using this dataset for I don't believe it will bring useful and meaningful insights for the project. 
 SELECT
@@ -150,6 +155,6 @@ Data limitations observed:
 
 -	The total of users that provided data is 33, it’s a small sample size, because of that, the final results and findings may not be very reliable or useful;
 -	The data is from 2016 and this project is happening in 2023. So, it might be outdated and may not reflect the real scenario nowadays;
--	It would be useful to have gender information for this project for the company’s (Bellabeat) main audience and consumers are women in general, but we don’t have that.
+-	It would be useful to have gender information for this project because the company’s (Bellabeat) main audience and consumers are women in general, but we don’t have that.
 
 
