@@ -33,12 +33,31 @@ Main steps of the process phase:
 -	Choose the useful datasets for the analysis;
 -	The dataset files can be found on the following link: https://www.kaggle.com/datasets/arashnic/fitbit  
 -	Upload the chosen files into BigQuery (SQL);
--	Some files gave an error for datetime format when trying to upload them into BigQuery, than I did some datetime formatting in google sheets before uploading into BigQuery;
+-	Some files returned a datetime format error when trying to upload them into BigQuery, but after I did some datetime formatting in google sheets the upload worked out;
 -	Files with metrics in minutes and seconds weren’t selected for the analysis. As we are looking for trends, only files containing metrics with day and hours will be used for this project;
--	Except for the weight (67 rows) and sleep (413 rows) datasets there are 940 rows of data in each selected dataset;
+-	The files were renamed, the "dailyActivity_merged.csv" is now "activity_merged.csv"; the "dailyCalories_merged.csv" is now "calories_merged.csv"; the "dailyIntensities_merged.csv" is now "intensities_merged.csv"; the "sleepDay_merged.csv" is now "sleep_day_merged.csv"; the "weightLogInfo_merged.csv" is now "weight_info.csv"; the "dailySteps_merged.csv" is now "steps_merged.csv"
+-	Except for the weight_info (67 rows) and sleep_day_merged (413 rows) datasets there are 940 rows of data in each selected dataset;
 -	After a quick look into each dataset, we can observe that all of them have 1 column in common, the “Id” column. And the “activity_merged” file seems to contain the same data as the files “calories_merged”, “intensities_merged” and “steps_merged”.
 -	So, I will check with some queries if the data in those datasets match. If they don’t, I will use JOIN statements to join the smaller datasets into the large one (activity_merged). If they have the same data, I will just use the large one and remove the others.
--	
+~~~
+-- This query checks if the data from the "calories_merged" dataset is already inside the "activity_merged" dataset. As it does not return any data it means that the first one is already contained inside the second one.
+SELECT
+  calories.Id,
+  calories.ActivityDay AS activity_date,
+  calories.Calories AS calories
+FROM
+  `elegant-atom-395419.bellabeat.calories_merged` AS calories
+LEFT JOIN
+  `elegant-atom-395419.bellabeat.activity_merged` AS daily_activity
+ON
+  calories.Id = daily_activity.Id AND 
+  calories.ActivityDay = daily_activity.ActivityDate AND 
+  calories.Calories = daily_activity.Calories
+WHERE
+  daily_activity.Id IS NULL OR
+  daily_activity.ActivityDate IS NULL OR
+  daily_activity.Calories IS NULL
+~~~
 
 Data limitations observed:
 
