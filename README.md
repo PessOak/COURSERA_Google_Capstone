@@ -163,7 +163,18 @@ CREATE OR REPLACE TABLE `elegant-atom-395419.bellabeat.clean_sleepday_merged` AS
 SELECT DISTINCT *
 FROM `elegant-atom-395419.bellabeat.sleep_day_merged` ;
 ```
-
+- We can run a query to gather some insights about the "clean_sleepday_mergeg" table:
+```sql
+-- This query shows the average sleep time of the users wich is 419 minutes (6.98 hours);
+-- Also the average bed time wich is 458 minutes (7.63 hours)
+-- And also, that each user, on average, stays on bed for almost 39 minutes with no sleep, daily. Later we will check if the activity level has any impact on this.
+SELECT
+  ROUND(AVG(TotalTimeInBed)) AS avg_bed_time,
+  ROUND(AVG(TotalMinutesAsleep)) AS avg_sleep_time,
+  ROUND(AVG(TotalTimeInBed) - AVG(TotalMinutesAsleep)) AS avg_awake_time_on_bed
+FROM
+  `elegant-atom-395419.bellabeat.clean_sleepday_merged`;
+```
 - Now We will merge the "clean_sleep_day_merged" table with the "activity_merged", but first we need to rename a column:
 ```sql
 -- This query is being used to change the name of one column in the sleep_day_merged table, so we can merge it with the activity_merged table using the columns ID and ActivityDate as the common columns
