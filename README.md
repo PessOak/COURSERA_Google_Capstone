@@ -190,7 +190,7 @@ ALTER TABLE `elegant-atom-395419.bellabeat.sleep_day_merged`
 RENAME COLUMN SleepDay TO ActivityDate;
 ```
 
-- Now we can merge the 2 tables:
+- Now we can merge the 2 tables and save the merged table in BigQuery as a new file named "Activity_Sleep_table":
 ```sql
 -- With this query we can join the tables activity_merged and clean_sleepday_merged into one single table. We use the common columns (Id and ActivityDate) between them to join the data
 SELECT
@@ -222,6 +222,35 @@ ON
 ```
 
 -
+## 4- Analysis
+- Using this query we can add a new column to the "Activity_Sleep_table" that classifies the users into 4 types based on the amount of steps they walk daily: "sedentary", "lightly active", "fairly active" and "very active". We will now be using the resulting table from the query and name it "Activity_Sleep_table02":
+```sql
+--This query adds a new column to the Activity_Sleep_table with some conditions:
+SELECT
+  *,
+  CASE
+    WHEN TotalSteps > 0 AND TotalSteps < 5000 THEN 'sedentary'
+    WHEN TotalSteps >= 5000 AND TotalSteps < 7499 THEN 'lightly active'
+    WHEN TotalSteps >= 7499 AND TotalSteps < 9999 THEN 'fairly active'
+    WHEN TotalSteps >= 10000 THEN 'very active'
+    ELSE 'not_measured' -- Add a default value or handle other cases as needed
+  END AS ActivityLevel
+FROM
+  `elegant-atom-395419.bellabeat.Activity_Sleep_table`
+```
+- By using this query we can observe the average sleep time by each group and create a visualization for better understanding later.
+```sql
+-- This query checks the average sleep time in minutes for each activity level group
+SELECT
+    ActivityLevel,
+    AVG(TotalMinutesAsleep) AS AvgSleepTime
+FROM
+    `elegant-atom-395419.bellabeat.Activity_Sleep_table_02`
+GROUP BY
+    ActivityLevel
+ORDER BY
+    ActivityLevel;
+```
 
 
 
