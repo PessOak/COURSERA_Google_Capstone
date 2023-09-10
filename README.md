@@ -308,7 +308,7 @@ SELECT
 FROM
   `elegant-atom-395419.bellabeat.steps_hour_converted`
 ```
-- And now with the steps_hour_datetime_convert table we create a new table with an extra column named Weekdays:
+- And now with the "steps_hour_datetime_convert" table we create a new table with an extra column (Weekdays) named "steps_hour_datetime_convert_weekdays":
 ```sql
 -- With this query we create a new table from the "steps_hour_datetime_convert", adding the weekdays as a new column:
 CREATE OR REPLACE TABLE `elegant-atom-395419.bellabeat.steps_hour_datetime_convert_weekdays` AS
