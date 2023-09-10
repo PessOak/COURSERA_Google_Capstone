@@ -40,7 +40,7 @@ Main steps of the process phase:
 -	After a quick look into each dataset, we can observe that all of them have 1 column in common, the “Id” column. And the “activity_merged” file seems to contain the same data as the files “calories_merged”, “intensities_merged” and “steps_merged”.
 -	So, I will check with some queries if the data in those datasets match. If they don’t, I will use JOIN statements to join the smaller datasets into the large one (activity_merged). If they have the same data, I will just use the large one and remove the others.
 ```sql
--- This query checks if the data from the "calories_merged" dataset is already inside the "activity_merged" dataset. As it does not return any data it means that the first one is already contained inside the second one.
+-- This query checks if the data from the "calories_merged" dataset is already inside the "activity_merged" dataset. As it does not return any data it means that the first one is already part of the second one.
 SELECT
   calories.Id,
   calories.ActivityDay AS activity_date,
@@ -57,6 +57,47 @@ WHERE
   daily_activity.Id IS NULL OR
   daily_activity.ActivityDate IS NULL OR
   daily_activity.Calories IS NULL
+```
+```sql
+-- This query checks if the data from the "intensities_merged" dataset is already inside the "activity_merged" dataset. As it does not return any data it means that the first one is already part of the second one.
+SELECT
+  intensities.Id,
+  intensities.ActivityDay AS activity_date,
+  intensities.SedentaryMinutes AS sedentary_mins,
+  intensities.SedentaryActiveDistance AS sedentary_dist
+FROM
+  `elegant-atom-395419.bellabeat.intensities_merged` AS intensities
+LEFT JOIN
+  `elegant-atom-395419.bellabeat.activity_merged` AS daily_activity
+ON
+  intensities.Id = daily_activity.Id AND 
+  intensities.ActivityDay = daily_activity.ActivityDate AND 
+  intensities.SedentaryMinutes = daily_activity.SedentaryMinutes AND 
+  intensities.SedentaryActiveDistance = daily_activity.SedentaryActiveDistance
+WHERE
+  daily_activity.Id IS NULL OR 
+  daily_activity.ActivityDate IS NULL OR 
+  daily_activity.SedentaryMinutes IS NULL OR 
+  daily_activity.SedentaryActiveDistance IS NULL
+```
+```sql
+-- This query checks if the data from the "steps_merged" dataset is already inside the "activity_merged" dataset. As it does not return any data it means that the first one is already part of the second one.
+SELECT
+  steps.Id,
+  steps.ActivityDay AS activity_date,
+  steps.StepTotal AS steps
+FROM
+  `elegant-atom-395419.bellabeat.steps_merged` AS steps
+LEFT JOIN
+  `elegant-atom-395419.bellabeat.activity_merged` AS daily_activity
+ON
+  steps.Id = daily_activity.Id AND 
+  steps.ActivityDay = daily_activity.ActivityDate AND 
+  steps.StepTotal = daily_activity.TotalSteps
+WHERE
+  daily_activity.Id IS NULL OR 
+  daily_activity.ActivityDate IS NULL OR 
+  daily_activity.TotalSteps IS NULL
 ```
 
 Data limitations observed:
