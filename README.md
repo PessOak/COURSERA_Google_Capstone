@@ -148,6 +148,65 @@ FROM
 ```
 
 ## 3- Process
+- With this query we can check for duplicates in the activity_merged table:
+```sql
+-- This query can be used to check for duplicates in the activity_merged table, there seems to be no duplicates
+SELECT DISTINCT *
+FROM `elegant-atom-395419.bellabeat.activity_merged`
+```
+- Using this query we can clean the "sleep_day_merged table" and create a new one, the "clean_sleepday_merged"
+```sql
+-- This query creates a new table with removed duplicates from the table sleep_day_merged
+CREATE OR REPLACE TABLE `elegant-atom-395419.bellabeat.clean_sleepday_merged` AS
+SELECT DISTINCT *
+FROM `elegant-atom-395419.bellabeat.sleep_day_merged` ;
+```
+- Now We will merge the "clean_sleep_day_merged" table with the "activity_merged", but first we need to rename a column:
+```sql
+-- This query is being used to change the name of one column in the sleep_day_merged table, so we can merge it with the activity_merged table using the columns ID and ActivityDate as the common columns
+ALTER TABLE `elegant-atom-395419.bellabeat.sleep_day_merged`
+RENAME COLUMN SleepDay TO ActivityDate;
+```
+- Now we can merge the 2 tables:
+```sql
+-- With this query we can join the tables activity_merged and clean_sleepday_merged into one single table. We use the common columns (Id and ActivityDate) between them to join the data
+SELECT
+  t1.Id,
+  t1.ActivityDate,
+  t1.TotalSteps AS TotalSteps,
+  t1.TotalDistance AS TotalDistance,
+  t1.TrackerDistance AS TrackerDistance,
+  t1.LoggedActivitiesDistance AS LoggedActivitiesDistance,
+  t1.VeryActiveDistance AS VeryActiveDistance,
+  t1.ModeratelyActiveDistance AS ModeratelyActiveDistance,
+  t1.LightActiveDistance AS LightActiveDistance,
+  t1.SedentaryActiveDistance AS SedentaryActiveDistance,
+  t1.VeryActiveMinutes AS VeryActiveMinutes,
+  t1.FairlyActiveMinutes AS FairlyActiveMinutes,
+  t1.LightlyActiveMinutes AS LightlyActiveMinutes,
+  t1.SedentaryMinutes AS SedentaryMinutes,
+  t1.Calories AS Calories,
+  t2.TotalSleepRecords AS TotalSleepRecords,
+  t2.TotalMinutesAsleep AS TotalMinutesAsleep,
+  t2.TotalTimeInBed AS TotalTimeInBed
+FROM
+  `elegant-atom-395419.bellabeat.activity_merged` AS t1
+LEFT JOIN
+  `elegant-atom-395419.bellabeat.clean_sleepday_merged` AS t2
+ON
+  t1.Id = t2.Id
+  AND t1.ActivityDate = t2.ActivityDate;
+```
+-
+
+
+
+
+
+
+
+
+
 
 Data limitations observed:
 
