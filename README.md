@@ -128,7 +128,6 @@ DISTINCT
 FROM
   `elegant-atom-395419.bellabeat.activity_merged`
 ```
-
 - Now checking how many entries there are for sleep:
 
 ```sql
@@ -138,7 +137,6 @@ SELECT
 FROM 
   `elegant-atom-395419.bellabeat.sleep_day_merged`
 ```
-
 - And now checking how many entries there are for weigth:
 
 ```sql
