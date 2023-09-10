@@ -33,7 +33,7 @@ Main steps of the Prepare phase:
 -	Upload the chosen files into BigQuery (SQL);
 -	Some files returned a datetime format error when trying to upload them into BigQuery, but after I did some datetime formatting in google sheets the upload worked out;
 -	Files with metrics in minutes and seconds weren’t selected for the analysis. As we are looking for trends, only files containing metrics with day and hours will be used for this project;
--	The files were renamed, the "dailyActivity_merged.csv" is now "activity_merged.csv"; the "dailyCalories_merged.csv" is now "calories_merged.csv"; the "dailyIntensities_merged.csv" is now "intensities_merged.csv"; the "sleepDay_merged.csv" is now "sleep_day_merged.csv"; the "weightLogInfo_merged.csv" is now "weight_info.csv"; the "dailySteps_merged.csv" is now "steps_merged.csv"
+-	The files were renamed, the "dailyActivity_merged.csv" is now "activity_merged.csv"; the "dailyCalories_merged.csv" is now "calories_merged.csv"; the "dailyIntensities_merged.csv" is now "intensities_merged.csv"; the "sleepDay_merged.csv" is now "sleep_day_merged.csv"; the "weightLogInfo_merged.csv" is now "weight_info.csv"; the "dailySteps_merged.csv" is now "steps_merged.csv"; the "hourlySteps_merged" is now "steps_hour_converted".
 -	Except for the weight_info (67 rows) and sleep_day_merged (413 rows) datasets there are 940 rows of data in each selected dataset;
 
 ```sql
@@ -297,11 +297,36 @@ GROUP BY
 ORDER BY
     ActivityLevel;
 ```
-- 
-
-
-
-
+- Now we'll do some manipulation on the "steps_hour_converted" table:
+```sql
+-- Using this query we can convert the datetime from the steps_hour_converted file to the format I need by creating a new table using the CREATE OR REPLACE TABLE command.
+CREATE OR REPLACE TABLE `elegant-atom-395419.bellabeat.steps_hour_datetime_convert` AS
+SELECT
+  Id,
+  FORMAT_TIMESTAMP('%y/%m/%d %H:%M:%S', ActivityHour) AS ActivityHour,
+  StepTotal
+FROM
+  `elegant-atom-395419.bellabeat.steps_hour_converted`
+```
+- And now with the steps_hour_datetime_convert table we create a new table with an extra column named Weekdays:
+```sql
+-- With this query we create a new table from the "steps_hour_datetime_convert", adding the weekdays as a new column:
+CREATE OR REPLACE TABLE `elegant-atom-395419.bellabeat.steps_hour_datetime_convert_weekdays` AS
+SELECT
+  *,
+  CASE EXTRACT(DAYOFWEEK FROM PARSE_DATETIME('%y/%m/%d %H:%M:%S', ActivityHour))
+    WHEN 1 THEN 'Sunday'
+    WHEN 2 THEN 'Monday'
+    WHEN 3 THEN 'Tuesday'
+    WHEN 4 THEN 'Wednesday'
+    WHEN 5 THEN 'Thursday'
+    WHEN 6 THEN 'Friday'
+    WHEN 7 THEN 'Saturday'
+    ELSE NULL
+  END AS Weekday
+FROM
+  `elegant-atom-395419.bellabeat.steps_hour_datetime_convert`
+```
 
 
 
