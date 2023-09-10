@@ -149,11 +149,13 @@ FROM
 
 ## 3- Process
 - With this query we can check for duplicates in the activity_merged table:
+
 ```sql
 -- This query can be used to check for duplicates in the activity_merged table, there seems to be no duplicates
 SELECT DISTINCT *
 FROM `elegant-atom-395419.bellabeat.activity_merged`
 ```
+
 - Using this query we can clean the "sleep_day_merged table" and create a new one, the "clean_sleepday_merged"
 ```sql
 -- This query creates a new table with removed duplicates from the table sleep_day_merged
@@ -161,12 +163,14 @@ CREATE OR REPLACE TABLE `elegant-atom-395419.bellabeat.clean_sleepday_merged` AS
 SELECT DISTINCT *
 FROM `elegant-atom-395419.bellabeat.sleep_day_merged` ;
 ```
+
 - Now We will merge the "clean_sleep_day_merged" table with the "activity_merged", but first we need to rename a column:
 ```sql
 -- This query is being used to change the name of one column in the sleep_day_merged table, so we can merge it with the activity_merged table using the columns ID and ActivityDate as the common columns
 ALTER TABLE `elegant-atom-395419.bellabeat.sleep_day_merged`
 RENAME COLUMN SleepDay TO ActivityDate;
 ```
+
 - Now we can merge the 2 tables:
 ```sql
 -- With this query we can join the tables activity_merged and clean_sleepday_merged into one single table. We use the common columns (Id and ActivityDate) between them to join the data
@@ -197,6 +201,7 @@ ON
   t1.Id = t2.Id
   AND t1.ActivityDate = t2.ActivityDate;
 ```
+
 -
 
 
