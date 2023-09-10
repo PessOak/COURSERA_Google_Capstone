@@ -155,6 +155,14 @@ FROM
 SELECT DISTINCT *
 FROM `elegant-atom-395419.bellabeat.activity_merged`
 ```
+- And with this query we can gather some insights about the steps count of the users:
+```sql
+-- Using this query we can understand that, on average, each user walks 7638 steps per day.
+SELECT
+  AVG(TotalSteps) AS average_steps
+FROM 
+  `elegant-atom-395419.bellabeat.activity_merged`
+```
 - Using this query we can clean the "sleep_day_merged table" and create a new one, the "clean_sleepday_merged"
 ```sql
 -- This query creates a new table with removed duplicates from the table sleep_day_merged
