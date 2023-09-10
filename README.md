@@ -155,7 +155,6 @@ FROM
 SELECT DISTINCT *
 FROM `elegant-atom-395419.bellabeat.activity_merged`
 ```
-
 - Using this query we can clean the "sleep_day_merged table" and create a new one, the "clean_sleepday_merged"
 ```sql
 -- This query creates a new table with removed duplicates from the table sleep_day_merged
@@ -175,6 +174,7 @@ SELECT
 FROM
   `elegant-atom-395419.bellabeat.clean_sleepday_merged`;
 ```
+
 - Now We will merge the "clean_sleep_day_merged" table with the "activity_merged", but first we need to rename a column:
 ```sql
 -- This query is being used to change the name of one column in the sleep_day_merged table, so we can merge it with the activity_merged table using the columns ID and ActivityDate as the common columns
