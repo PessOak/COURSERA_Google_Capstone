@@ -223,7 +223,7 @@ ON
 
 -
 ## 4- Analysis
-- Using this query we can add a new column to the "Activity_Sleep_table" that classifies the users into 4 types based on the amount of steps they walk daily: "sedentary", "lightly active", "fairly active" and "very active". We will now be using the resulting table from the query and name it "Activity_Sleep_table02":
+- Using this query we can add a new column to the "Activity_Sleep_table" that classifies the users into 4 types based on the amount of steps they walk daily: "sedentary", "lightly active", "fairly active" and "very active". We will now be using the resulting table from the query and name it "Activity_Sleep_table_02":
 ```sql
 --This query adds a new column to the Activity_Sleep_table with some conditions:
 SELECT
@@ -251,8 +251,53 @@ GROUP BY
 ORDER BY
     ActivityLevel;
 ```
-
-
+- This...
+```sql
+-- This query can be used to select the desired columns to create a visualization that can show the correlation between TotalSteps and Calories
+SELECT 
+  Id,
+  ActivityDate,
+  TotalSteps,
+  Calories
+FROM 
+  `elegant-atom-395419.bellabeat.activity_merged`
+```
+- This query can show the average caloric expenditure by each group:
+```sql
+--This query returns the average calories burned by each activity level group
+SELECT
+    ActivityLevel,
+    AVG(Calories) AS AvgCaloriesBurned
+FROM
+    `elegant-atom-395419.bellabeat.Activity_Sleep_table_02`
+GROUP BY
+    ActivityLevel
+ORDER BY
+    ActivityLevel;
+```
+- This one can be used to check the avergae daily steps from each activity level group and create some viz
+```sql
+-- With this query we can check the avergae daily steps from each activity level group
+SELECT
+    ActivityLevel,
+    AVG(DailyTotalSteps) AS AvgDailySteps
+FROM (
+    SELECT
+        ActivityLevel,
+        ActivityDate,
+        AVG(TotalSteps) AS DailyTotalSteps
+    FROM
+        `elegant-atom-395419.bellabeat.Activity_Sleep_table_02`
+    GROUP BY
+        ActivityLevel,
+        ActivityDate
+) AS DailyTotals
+GROUP BY
+    ActivityLevel
+ORDER BY
+    ActivityLevel;
+```
+- 
 
 
 
