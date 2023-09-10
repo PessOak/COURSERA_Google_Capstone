@@ -39,7 +39,7 @@ Main steps of the process phase:
 -	Except for the weight_info (67 rows) and sleep_day_merged (413 rows) datasets there are 940 rows of data in each selected dataset;
 -	After a quick look into each dataset, we can observe that all of them have 1 column in common, the “Id” column. And the “activity_merged” file seems to contain the same data as the files “calories_merged”, “intensities_merged” and “steps_merged”.
 -	So, I will check with some queries if the data in those datasets match. If they don’t, I will use JOIN statements to join the smaller datasets into the large one (activity_merged). If they have the same data, I will just use the large one and remove the others.
-~~~
+```sql
 -- This query checks if the data from the "calories_merged" dataset is already inside the "activity_merged" dataset. As it does not return any data it means that the first one is already contained inside the second one.
 SELECT
   calories.Id,
@@ -57,7 +57,7 @@ WHERE
   daily_activity.Id IS NULL OR
   daily_activity.ActivityDate IS NULL OR
   daily_activity.Calories IS NULL
-~~~
+```
 
 Data limitations observed:
 
