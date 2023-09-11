@@ -361,7 +361,7 @@ SELECT
         WHEN SUM(TotalSleepRecords) > 20 THEN "High"
         WHEN SUM(TotalSleepRecords) > 10 AND SUM(TotalSleepRecords) < 21 THEN "Average"
         WHEN SUM(TotalSleepRecords) > 0 AND SUM(TotalSleepRecords) < 11 THEN "Low"
-        ELSE "No record" -- You can add an "else" condition for any other cases
+        ELSE "No record"
     END AS Usage
 FROM
     `elegant-atom-395419.bellabeat.Activity_Sleep_table_02`
