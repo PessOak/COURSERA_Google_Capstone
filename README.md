@@ -327,9 +327,30 @@ SELECT
 FROM
   `elegant-atom-395419.bellabeat.steps_hour_datetime_convert`
 ```
-
-
-
+- And this query can be used to show us the average steps by hour of each day on the week, we can use it to build a visualization for better understanding
+```sql
+-- With this query we can get a table that will be used to build a visualization model later
+SELECT
+  CASE EXTRACT(DAYOFWEEK FROM PARSE_TIMESTAMP('%y/%m/%d %H:%M:%S', ActivityHour))
+    WHEN 1 THEN "Sunday"
+    WHEN 2 THEN "Monday"
+    WHEN 3 THEN "Tuesday"
+    WHEN 4 THEN "Wednesday"
+    WHEN 5 THEN "Thursday"
+    WHEN 6 THEN "Friday"
+    WHEN 7 THEN "Saturday"
+  END AS WeekdayName,
+  CAST(EXTRACT(HOUR FROM PARSE_TIMESTAMP('%y/%m/%d %H:%M:%S', ActivityHour)) AS INT64) AS Hour,
+  AVG(StepTotal) AS AvgSteps
+FROM
+  `elegant-atom-395419.bellabeat.steps_hour_datetime_convert_weekdays`
+GROUP BY
+  WeekdayName,
+  Hour
+ORDER BY
+  WeekdayName,
+  Hour;
+```
 
 Data limitations observed:
 
