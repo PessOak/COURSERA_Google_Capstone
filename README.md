@@ -351,6 +351,25 @@ ORDER BY
   WeekdayName,
   Hour;
 ```
+- And last but not least:
+```sql
+-- With this query we can check how many SleepRecords there are for each user and classify them by usage into 4 different types: High, Average, Low and No record. We can see that from the 33 users 9 of them have no SleepRecords and are classified as No record.
+SELECT
+    Id,
+    SUM(TotalSleepRecords) AS TotalRecords,
+    CASE
+        WHEN SUM(TotalSleepRecords) > 20 THEN "High"
+        WHEN SUM(TotalSleepRecords) > 10 AND SUM(TotalSleepRecords) < 21 THEN "Average"
+        WHEN SUM(TotalSleepRecords) > 0 AND SUM(TotalSleepRecords) < 11 THEN "Low"
+        ELSE "No record" -- You can add an "else" condition for any other cases
+    END AS Usage
+FROM
+    `elegant-atom-395419.bellabeat.Activity_Sleep_table_02`
+GROUP BY
+    Id
+ORDER BY
+    Id;
+```
 
 Data limitations observed:
 
