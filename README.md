@@ -379,6 +379,26 @@ Data limitations observed:
 
 ## 5- Sharing (Visualizations)
 
+
 ![Sheet 1](https://github.com/PessOak/COURSERA_Google_Capstone/assets/105830948/1e3ea7b3-9ca5-45e0-a89e-3c4a7fa55332)
+
+
+![Planilha 2](https://github.com/PessOak/COURSERA_Google_Capstone/assets/105830948/7314280b-31c2-460d-9c90-b1bf7507826e)
+
+
+![Sheet 1 (1)](https://github.com/PessOak/COURSERA_Google_Capstone/assets/105830948/87c763bd-7966-4508-8f7b-c1d219c8f200)
+
+
+![Sheet 1 (2)](https://github.com/PessOak/COURSERA_Google_Capstone/assets/105830948/3f4b65b9-0a75-495c-9280-57d0f79fa3d4)
+
+
+![Sheet 1 (3)](https://github.com/PessOak/COURSERA_Google_Capstone/assets/105830948/091ccc80-baf6-4cde-b459-24eaf50594c3)
+
+
+![Sheet 1 (4)](https://github.com/PessOak/COURSERA_Google_Capstone/assets/105830948/3f5514c5-0b53-46d4-a2bd-3f35c44f4a15)
+
+
+
+
 
 
