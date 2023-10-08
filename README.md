@@ -379,5 +379,6 @@ Data limitations observed:
 
 ## 5- Sharing (Visualizations)
 
-https://public.tableau.com/views/Bellabeat_Google_CaseStudy/Sheet1?:language=pt-BR&:display_count=n&:origin=viz_share_link
+![Sheet 1](https://github.com/PessOak/COURSERA_Google_Capstone/assets/105830948/1e3ea7b3-9ca5-45e0-a89e-3c4a7fa55332)
+
 
