@@ -377,4 +377,7 @@ Data limitations observed:
 -	The data is from 2016 and this project is happening in 2023. So, it might be outdated and may not reflect the real scenario nowadays;
 -	It would be useful to have gender information for this project because the company’s (Bellabeat) main audience and consumers are women in general, but we don’t have that.
 
+## 5- Sharing (Visualizations)
+
+https://public.tableau.com/views/Bellabeat_Google_CaseStudy/Sheet1?:language=pt-BR&:display_count=n&:origin=viz_share_link
 
